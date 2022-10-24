@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
     #has_one_attached :image
-    
+    before_action :is_matching_login_user,only: [:edit, :update]
   
   def new
   
@@ -18,11 +18,7 @@ class UsersController < ApplicationController
   end
   
   def update
-  user_id = params[:id].to_i
-  login_user_id = current_user.id
-  if(user_id!= login_user_id)
-    redirect_to user_path
-  end  
+
     @user=User.find(params[:id]) #配列
    if @user.update(user_params)
      flash[:notice]="You have updated user successfully."
@@ -40,12 +36,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-  user_id = params[:id].to_i
-  login_user_id = current_user.id
-  if(user_id != login_user_id)
-    redirect_to user_path
-  end
-    @user=User.find(params[:id])
+   
+   @user=User.find(params[:id])
   
   end
   
@@ -55,6 +47,12 @@ class UsersController < ApplicationController
  def user_params
    params.require(:user).permit(:name,:profile_image,:introduction)
  end
-
-
+  
+  def is_matching_login_user
+  user_id = params[:id].to_i
+  login_user_id = current_user.id
+  if(user_id!= login_user_id)
+    redirect_to user_path(current_user)
+  end
+  end
 end
