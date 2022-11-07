@@ -7,7 +7,7 @@
  <%end%> 
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3", style="position: static;">
       <h2>User info</h2>
       <%= image_tag @user.get_profile_image(100,100) %>
         <table class="table">
@@ -41,7 +41,7 @@
         <%=f.text_area:body%>
         <!--<script src="raty.js"></script>-->
         <!--<div data-raty></div>-->
-        <p>Rate<div id="score"></div></p>
+        <p>Rate<span id="score"></span></p>
         
         
         <%=f.submit'Create Book',class: "btn btn-success"%>
@@ -95,6 +95,7 @@
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
     scoreName: "book[score]",
+    half: true,
    };
   raty(elem,opt);
 </script>

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto", style="position: static;">
 
      <h1>Editing Book</h1>
      <% if @book.errors.any? %>
@@ -20,7 +20,6 @@
      <div><%=f.text_area:body%></div>
      
      <div id="score"></div>
-     
      <div><%= f.submit"Update Book",class: "btn btn-sm btn-success" %></div>
      <%end%>
      <br><br>
@@ -39,7 +38,8 @@
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
     scoreName: "book[score]",
-    score: <%= @book.score %>
+    score: <%= @book.score %>,
+    half: true,
    };
   raty(elem,opt);
 </script>

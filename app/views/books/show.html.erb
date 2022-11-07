@@ -18,6 +18,9 @@
             <td><%=link_to @books.title, book_path(@books.id)%></td>
             <td><%=@books.body%></td>
             <td class='count'><%=render 'book_comments/count',books: @books%></td>
+            <td>
+              <div id="score_books_index<%= @books.id %>"></div>
+            </td>
             <td id="favorite_buttons_<%= @books.id %>">
               <%=render "favorites/like" ,user: @user,book: @books%>
             </td>
@@ -29,7 +32,7 @@
             </tr>
           </table>
           
-          <div id="score_<%= @books.id %>"></div>
+          
 
           <div class="book_comments">
             <%= render 'book_comments/index' ,books: @books,user: @user%>
@@ -49,7 +52,7 @@
 
 <script>
   // scriptファイルをどのidの部分に配置するかを指定
-  let elem = document.querySelector('#score_<%= @books.id %>');
+  let elem = document.querySelector('#score_books_index<%= @books.id %>');
   let opt = {  
     //星画像の指定などのオプションをここに記述,
     starOn: "<%= asset_path('star-on.png') %>",
