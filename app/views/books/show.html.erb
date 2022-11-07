@@ -17,7 +17,7 @@
             </td>
             <td><%=link_to @books.title, book_path(@books.id)%></td>
             <td><%=@books.body%></td>
-            <td>コメント件数：<%= @books.book_comments.count %></td>
+            <td class='count'><%=render 'book_comments/count',books: @books%></td>
             <td id="favorite_buttons_<%= @books.id %>">
               <%=render "favorites/like" ,user: @user,book: @books%>
             </td>
@@ -29,28 +29,14 @@
             </tr>
           </table>
           
-          <table class="book_comments_<% @books.id%>">
-            <% @books.book_comments.each do |book_comment| %>
-            <tr>
-            <td>
-            <%=link_to user_path(@user.id) do %>
-            <%= image_tag @books.user.get_profile_image(80,80) %>
-            <br>
-            <%= book_comment.user.name %>
-            <%end%>
-            </td>  
-            <td><%= book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %></td>
-            <td>
-            <% if book_comment.user == current_user %>
-            <%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete,remote: true,class: "btn-sm btn-danger"  %>
-           <% end %>
-           </td>
-          </tr>
-       <% end %>
-     </table>
+          <div id="score_<%= @books.id %>"></div>
+
+          <div class="book_comments">
+            <%= render 'book_comments/index' ,books: @books,user: @user%>
+          </div>
            
-            <div class="book_comments">
-            <%= render "book_comments/comment",books: @books,book_comment: @book_comment%>
+            <div>
+            <%= render "book_comments/comment",book: @books, book_comment: @book_comment %>
             </div>  <!--コメントが出る時、book自体の編集と削除ボタンは必要か？-->
             
             
@@ -61,3 +47,17 @@
    </div>
 </div>   
 
+<script>
+  // scriptファイルをどのidの部分に配置するかを指定
+  let elem = document.querySelector('#score_<%= @books.id %>');
+  let opt = {  
+    //星画像の指定などのオプションをここに記述,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: "book[score]",
+    score: <%= @books.score %>,
+    readOnly: true,
+   };
+  raty(elem,opt);
+</script>

@@ -37,7 +37,22 @@
         <p>Opinion</p>
         <%=f.text_area:body%>
         
+        <p>Score</p>
+        <div id="score_userinfo"></div>
+        
         <%=f.submit'Create Book',class: "btn btn-success"%>
       <%end%>
-    
-    
+
+    <script>
+      raty(
+        document.querySelector('#score_userinfo'),
+        {  
+        //星画像の指定などのオプションをここに記述,
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        scoreName: "book[score]",
+        half: true,
+       }
+        );
+    </script>

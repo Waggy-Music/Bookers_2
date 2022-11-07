@@ -1,19 +1,20 @@
 class BookCommentsController < ApplicationController
   def create
     @books = Book.find(params[:book_id])
-    comment = current_user.book_comments.new(book_comment_params)
-    comment.book_id = @book.id
-    comment.save
-    @book_comment = BookComment.new
+    @comment = current_user.book_comments.new(book_comment_params)
+    @comment.book_id = @books.id
+    @comment.save
+    @comment=BookComment.all
+    @user=current_user
   end
     
+  #クリエイト、パチっと画面が変わる、削除うまく動かない
   
   def destroy
     @books = Book.find(params[:book_id])
-    @book_comment=BookComment.find_by(id: params[:id], book_id: params[:book_id])
-    @book_comment.destroy
-    @book_comment = BookComment.new
-    
+    @comment=BookComment.find_by(id: params[:id], book_id: params[:book_id])
+    @comment.destroy
+    @user=current_user
   end
 
   private
