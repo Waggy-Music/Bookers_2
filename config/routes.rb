@@ -8,7 +8,8 @@ Rails.application.routes.draw do
  # get 'homes/top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '/search' => 'searches#search'
-  
+  #get 'books/index/星の多い順',to: 'books#index',as: '星の多い順'
+  #get 'books/index/星の多い順',to: 'books#index',as: '星の多い順'
  resources :books do
  resource :favorites,only:[:create, :destroy]
  resources:book_comments,only: [:create, :destroy]

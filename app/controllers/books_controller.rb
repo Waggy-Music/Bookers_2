@@ -36,7 +36,16 @@ class BooksController < ApplicationController
     @book=Book.new
     @books=Book.all
     
+   if sort_params.present?
+      @books = Book.sort_movies(sort_params)
+   else
+      @books  = Book.all
+   end
+    @sort_list = Book.sort_list
+    
   end
+  
+  
 
   def show
     @book=Book.new
@@ -65,4 +74,8 @@ private
  def book_params
   params.require(:book).permit(:title,:body, :score)
  end  
+ 
+ def sort_params
+      params.permit(:sort)
+ end
 end

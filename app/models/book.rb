@@ -7,6 +7,15 @@ class Book < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :book_comments,dependent: :destroy
   
+  scope :sort_books, -> (sort) { order(sort[:sort]) }
+     scope :sort_list, -> {
+     {
+       "並び替え" => "",
+       "星の多い順" => "score_at ASC",
+       "作成の新しい順" => "updated_at DESC",
+     }
+   }
+  
   def favorited_by?(user)
    favorites.exists?(user_id: user.id)
   end
