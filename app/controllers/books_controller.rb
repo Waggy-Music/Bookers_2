@@ -37,7 +37,7 @@ class BooksController < ApplicationController
     @books=Book.all
     
    if sort_params.present?
-      @books = Book.sort_movies(sort_params)
+      @books = Book.sort_books(sort_params)
    else
       @books  = Book.all
    end

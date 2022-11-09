@@ -11,7 +11,7 @@ class Book < ApplicationRecord
      scope :sort_list, -> {
      {
        "並び替え" => "",
-       "星の多い順" => "score_at ASC",
+       "星の多い順" => "score desc", #その後ビューのタブをリンクに直す
        "作成の新しい順" => "updated_at DESC",
      }
    }
