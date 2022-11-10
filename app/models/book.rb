@@ -6,15 +6,14 @@ class Book < ApplicationRecord
   
   has_many :favorites, dependent: :destroy
   has_many :book_comments,dependent: :destroy
+  has_many :favorited_users,through: :favorites,source: :user
   
-  scope :sort_books, -> (sort) { order(sort[:sort]) }
-     scope :sort_list, -> {
-     {
-       "並び替え" => "",
-       "星の多い順" => "score desc", #その後ビューのタブをリンクに直す
-       "作成の新しい順" => "updated_at DESC",
-     }
-   }
+  
+   scope :latest, -> {order(created_at: :desc)}
+   scope :old, -> {order(created_at: :asc)}
+   scope :score_count, -> {order(score: :desc)}
+   
+  
   
   def favorited_by?(user)
    favorites.exists?(user_id: user.id)
@@ -22,3 +21,13 @@ class Book < ApplicationRecord
   
    
 end
+
+
+  # scope :sort_books, -> (sort) { order(sort[:sort]) }
+  #    scope :sort_list, -> {
+  #    {
+  #      "並び替え" => "",
+  #      "星の多い順" => "score desc", 
+  #      "作成の新しい順" => "updated_at DESC",
+  #    }
+  #  }

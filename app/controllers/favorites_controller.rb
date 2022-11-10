@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.new(book_id: @book.id)
     favorite.save
     
-    
   
   end
   

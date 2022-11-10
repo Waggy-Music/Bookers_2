@@ -1,0 +1,10 @@
+<%= form_with url: books_path, method: :get do|f|  %>
+  <% if @sorted.present? %>
+    <%= select :sort, @sort_list, selected: @sorted, onChange: "javascript: this.form.submit();" %>
+  <% else %>
+    <%= select :sort, @sort_list, {}, onChange: "javascript: this.form.submit();" %>
+  <% end %>
+<% end %>
+
+
+<!--整理のため今は使用せず-->

@@ -17,13 +17,15 @@
             </td>
             <td><%=link_to @books.title, book_path(@books.id)%></td>
             <td><%=@books.body%></td>
+            <td><%=@books.tag%></td>
+            <td id="favorite_buttons_<%= @books.id %>">
+              <%=render "favorites/like" ,user: @user,book: @books%>
+            </td>
             <td class='count'><%=render 'book_comments/count',books: @books%></td>
             <td>
               <div id="score_books_index<%= @books.id %>"></div>
             </td>
-            <td id="favorite_buttons_<%= @books.id %>">
-              <%=render "favorites/like" ,user: @user,book: @books%>
-            </td>
+            
             <% if @books.user==current_user%>
              <td><%=link_to "Edit",edit_book_path(@books.id),class: "btn btn-sm btn-success" %></td> 
              <td><%=link_to "Destroy",book_path(@books.id), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "Are you sure?"%>

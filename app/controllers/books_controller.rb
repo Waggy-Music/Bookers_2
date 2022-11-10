@@ -35,13 +35,26 @@ class BooksController < ApplicationController
     @user=current_user
     @book=Book.new
     @books=Book.all
-    
-   if sort_params.present?
-      @books = Book.sort_books(sort_params)
+   # if sort_params.present?
+   #    @books = Book.sort_books(sort_params)
+   # else
+   #    @books  = Book.all
+   # end
+   #  @sort_list = Book.sort_list
+   if params[:latest]
+     @books = Book.latest
+   elsif params[:old]
+     @books = Book.old
+   elsif params[:score_count]
+     @books = Book.score_count
+   elsif params[:favorite]
+    #@books=Book.count 
+    @books = Book.includes(:favorited_users).sort_by {|x|
+     x.favorited_users.size
+    }.reverse
    else
-      @books  = Book.all
+    @books = Book.all
    end
-    @sort_list = Book.sort_list
     
   end
   
@@ -75,7 +88,7 @@ private
   params.require(:book).permit(:title,:body, :score)
  end  
  
- def sort_params
-      params.permit(:sort)
- end
+ # def sort_params
+ #      params.permit(:sort)
+ # end
 end
