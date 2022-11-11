@@ -23,7 +23,7 @@
             </td>
             <td class='count'><%=render 'book_comments/count',books: @books%></td>
             <td>
-              <div id="score_books_index<%= @books.id %>"></div>
+              <div id="score_books_show_<%= @books.id %>"></div>
             </td>
             
             <% if @books.user==current_user%>
@@ -54,7 +54,7 @@
 
 <script>
   // scriptファイルをどのidの部分に配置するかを指定
-  let elem = document.querySelector('#score_books_index<%= @books.id %>');
+  let elem = document.querySelector('#score_books_show_<%= @books.id %>');
   let opt = {  
     //星画像の指定などのオプションをここに記述,
     starOn: "<%= asset_path('star-on.png') %>",

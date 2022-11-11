@@ -46,15 +46,15 @@
       <%end%>
 
     <script>
-      raty(
-        document.querySelector('#score_userinfo'),
-        {  
+      // scriptファイルをどのidの部分に配置するかを指定
+      let elem = document.querySelector('#score_userinfo');
+      let opt = {  
         //星画像の指定などのオプションをここに記述,
         starOn: "<%= asset_path('star-on.png') %>",
         starOff: "<%= asset_path('star-off.png') %>",
         starHalf: "<%= asset_path('star-half.png') %>",
         scoreName: "book[score]",
         half: true,
-       }
-        );
+       };
+      raty(elem,opt);
     </script>

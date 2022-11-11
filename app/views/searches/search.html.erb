@@ -1,6 +1,9 @@
 <% if @model == 'user' %>
   <h3>User search for：<%= @content %></h3>
   <%= render 'users/user', users: @records %>
+<% elsif @tag== 'tag'%>
+  <h3>Books tag seach for</h3>
+  <%= render 'seaches/tag' , books: @records%>
 <% else @model == 'books' %>
   <h3>Book search for：<%= @content %></h3>
     <%= render 'books/index', books: @records %>

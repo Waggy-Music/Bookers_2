@@ -1,5 +1,16 @@
-<% users.each do |user| %>
+<table class="table">
+    
+        <tr>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+<td><% users.each do |user| %>
   <%= link_to user_path(user) do %>
-    <%= user.name %><br>
+    <%= user.name %></td>
   <% end %>
+  </tr>
 <% end %>
+</table>

@@ -73,7 +73,7 @@
       <%= flash[:notice] %>
       <div class="mt-2">
         <% if user_signed_in?%>
-        <div class="text-center"><%= render 'searches/form' %></div>
+        <div class="text-center"><%= render 'searches/form' %></div><%= render 'searches/tag'%>
         <%end%>
     <%= yield %>
       </div>
