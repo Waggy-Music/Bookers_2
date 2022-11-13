@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
 			@records = Book.search_for(@content, @method)
 		elsif @model == 'tag'
 			@records = Tag.search_books_for(@content, @method)
-		end
+	 	end
 	end
 end
 
