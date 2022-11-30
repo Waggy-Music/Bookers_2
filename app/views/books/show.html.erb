@@ -54,15 +54,16 @@
 
 <script>
   // scriptファイルをどのidの部分に配置するかを指定
-  let elem = document.querySelector('#score_books_show_<%= @books.id %>');
-  let opt = {  
+ raty(
+   document.querySelector('#score_books_show_<%= @books.id %>'),
+  {  
     //星画像の指定などのオプションをここに記述,
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
     scoreName: "book[score]",
-    score: <%= @books.score %>,
+    score: "<%= @books.score %>",
     readOnly: true,
-   };
+   });
   raty(elem,opt);
 </script>
