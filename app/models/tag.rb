@@ -1,6 +1,6 @@
 class Tag < ApplicationRecord
   has_many :book_tags, dependent: :destroy, foreign_key: 'tag_id'
-  has_many :books, through: :book_tags
+  has_many :books, through: :book_tag_relations, dependent: :destroy
   
   scope :merge_books, -> (tags){ }
   

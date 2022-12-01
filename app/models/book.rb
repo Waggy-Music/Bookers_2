@@ -7,7 +7,8 @@ class Book < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :book_comments,dependent: :destroy
   has_many :favorited_users,through: :favorites,source: :user
-  
+  has_many :book_tags, dependent: :destroy
+  has_many :tags,through: :book_tag_relations, dependent: :destroy
   
    scope :latest, -> {order(created_at: :desc)}
    scope :old, -> {order(created_at: :asc)}
