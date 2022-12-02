@@ -19,7 +19,7 @@
      <div>Body</div>
      <div><%=f.text_area:body%></div>
      <div>Tag</div>
-     <div><%=f.text_field:tag%></div>
+     <div><%=f.text_field:tag_name%></div>
      <div id="score_edit"></div><!--星が消えるバグありタグリンク作ろう-->
      <div><%= f.submit"Update Book",class: "btn btn-sm btn-success" %></div>
      <%end%>
@@ -29,7 +29,9 @@
     </div>
    </div>
  </div>
- 
+ <% @book.tags.each do |tag| %>
+       <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
+       <% end %>
  <script>
   // scriptファイルをどのidの部分に配置するかを指定
   let elem = document.querySelector('#score_edit');

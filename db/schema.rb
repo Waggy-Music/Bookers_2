@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2022_11_11_143015) do
   end
 
   create_table "book_tags", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -60,7 +62,6 @@ ActiveRecord::Schema.define(version: 2022_11_11_143015) do
     t.float "score", default: 0.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "tag"
   end
 
   create_table "favorites", force: :cascade do |t|

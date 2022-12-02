@@ -17,7 +17,9 @@
             </td>
             <td><%=link_to @books.title, book_path(@books.id)%></td>
             <td><%=@books.body%></td>
-            <td><%=@books.tag%></td>
+            <td><% @books.tags.each do |tag| %>
+       <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
+       <% end %><%#=@books.tags.name%></td>
             <td id="favorite_buttons_<%= @books.id %>">
               <%=render "favorites/like" ,user: @user,book: @books%>
             </td>
