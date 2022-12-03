@@ -1,0 +1,1 @@
+new Luminous(document.querySelector(".zoom_normal"));

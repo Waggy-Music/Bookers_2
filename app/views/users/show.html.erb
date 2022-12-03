@@ -18,11 +18,17 @@
         </tr>
         <%@books.each do |book| %>
         <tr>
-          <td>
+          <td class="zoom_normal" >
             <!--% if @user==current_user%-->
-            <%=link_to user_path do %>
+            <%=link_to user_path do  %>
             <%= image_tag @user.get_profile_image(100,100) %>
             <%end%>
+           <!--<a class="zoom_normal" href="拡大画像のパス">-->
+           <!--  <img src="サムネイル画像のパス">-->
+           <!--</a>-->
+          <!-- <a class="zoom_normal" href="https://drive.google.com/uc?export=view&id=1eVTs9BFbvChOCWSavN1BAPDUz0x7-cIH">-->
+          <!--  <img src="https://drive.google.com/uc?export=view&id=1NUdnySZXjD-P08OCg5FrJM6xY1hzH72F" width="200">-->
+          <!--</a>-->
           </td>
           <td>
             <%=link_to book.title, book_path(book.id)%>
