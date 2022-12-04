@@ -25,7 +25,7 @@ class SearchesController < ApplicationController
     @content = params[:content]
     @method = params[:method]
     @records = search_for(@model, @content, @method,@tag)
-    @tag=params[:tag]
+    @tag=params[:name]
   end
 
   private
@@ -42,10 +42,10 @@ class SearchesController < ApplicationController
       else
         Book.where('title LIKE ?', '%'+content+'%')
       end
+       def seach_for(tag)
+       Book.where(tag: content)
+       end
     end
   end
 end
 
-# def seach_for(tag)
-# Book.where(tag: content)
-# end

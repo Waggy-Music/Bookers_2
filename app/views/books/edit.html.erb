@@ -19,7 +19,7 @@
      <div>Body</div>
      <div><%=f.text_area:body%></div>
      <div>Tag</div>
-     <div><%=f.text_field:tag_name%></div>
+     <div><%=f.text_field:tag_name, value: @book.tags.pluck(:name).join(',')%></div>
      <div id="score_edit"></div><!--星が消えるバグありタグリンク作ろう-->
      <div><%= f.submit"Update Book",class: "btn btn-sm btn-success" %></div>
      <%end%>

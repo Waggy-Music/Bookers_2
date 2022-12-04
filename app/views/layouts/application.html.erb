@@ -8,7 +8,10 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" type="text/css" href="luminous-basic.min.css">
+    <%= stylesheet_pack_tag 'luminous-basic.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!--<link rel="stylesheet" type="text/css" href="luminous-basic.css">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous.min.js"></script>
+    
   </head>
 
   <body class="d-flex flex-column vh-100">
@@ -27,7 +30,6 @@
       <%= yield %>
       </div>
     </main>
-    <script src="luminous.min.js"></script>
   </body>
   <fooder class="container mt-5">
     
